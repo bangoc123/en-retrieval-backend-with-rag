@@ -1,8 +1,7 @@
 # English Retrieval Backend: RAG + MongoDB + Gemini 1.5 Pro + Semantic Router + Reflection
 
 
-This demo will be presented at:
-- Google I/O Extended Surabaya 2024
+This demo will be presented at Google I/O Extended Surabaya 2024
 
 
 - [Slide](https://docs.google.com/presentation/d/1-noqqG8xCfIzS3H1lmG6dpJ-xROcdM54rATWxe7cxhM/edit?usp=sharing)
