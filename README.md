@@ -1,46 +1,26 @@
-# Vietnamese Retrieval Backend: RAG + MongoDB + Gemini 1.5 Pro + Semantic Router + Reflection
+# English Retrieval Backend: RAG + MongoDB + Gemini 1.5 Pro + Semantic Router + Reflection
 
 
-This demo was presented at:
-- Google I/O Extended HCMC 2024
-- Google I/O Extended Hanoi 2024
-
-and will presented at:
+This demo will be presented at:
 - Google I/O Extended Surabaya 2024
 
 
-[Slide](https://drive.google.com/file/d/1HxTEHp4lV6i4C5F2ummqjFLXDnzPkaPX/view?usp=sharing)
+- [Slide](https://docs.google.com/presentation/d/1-noqqG8xCfIzS3H1lmG6dpJ-xROcdM54rATWxe7cxhM/edit?usp=sharing)
 
+- [Code](https://colab.research.google.com/drive/1WU_XGl4jGcrMQq-1zhDUsTDcpsVxflXD?usp=sharing) to build Vector Search
+- [Code](https://colab.research.google.com/drive/1x4Yd7bRLbJoUePKF6pctncIvejrfkn3F?usp=sharing) to run RAG pipeline in Google Colab
 
 ![](https://storage.googleapis.com/mle-courses-prod/users/61b869ca9c3c5e00292bb42d/private-files/dd582970-3da7-11ef-bf69-71eafa46c86b-Screen_Shot_2024_07_09_at_11.00.59.png)
-
-### Demo
-
-[Video Demo](https://youtu.be/zzN3FEuzVt4)
-
-[VTC1 featured us here](https://youtu.be/0ZOoPHcVZls)
-
-![](https://storage.googleapis.com/mle-courses-prod/users/61b869ca9c3c5e00292bb42d/private-files/60d0f8d0-3da9-11ef-bf69-71eafa46c86b-NMD05816.JPG)
-
 
 
 #### Chatbot Architecture
 
 ![](https://storage.googleapis.com/mle-courses-prod/users/61b869ca9c3c5e00292bb42d/private-files/f8928780-3da7-11ef-a9c5-539ef4fa11ba-Screen_Shot_2024_07_09_at_11.01.45.png)
 
-#### RAG Architecture
 
-![](https://storage.googleapis.com/mle-courses-prod/users/61b869ca9c3c5e00292bb42d/private-files/ea30c3b0-2933-11ef-bde4-3b0f2c27b69f-Screen_Shot_2024_06_13_at_10.20.36.png)
+#### Demo
 
-
-#### Chatbot is able to retrieve your product data and answer questions around it
-
-![](https://storage.googleapis.com/mle-courses-prod/users/61b869ca9c3c5e00292bb42d/private-files/0e6926b0-2a05-11ef-bde4-3b0f2c27b69f-Screen_Shot_2024_06_14_at_11.04.23.png)
-
-
-#### Beyond that, with the help of the Semantic Router, the chatbot is able to follow chitchat conversations
-
-![](https://storage.googleapis.com/mle-courses-prod/users/61b6fa1ba83a7e37c8309756/private-files/3efb6050-36ca-11ef-a9c5-539ef4fa11ba-Screen_Shot_2024_06_30_at_16.57.11.png)
+![](https://storage.googleapis.com/mle-courses-prod/users/61b6fa1ba83a7e37c8309756/private-files/4e600bd0-48e6-11ef-bf69-71eafa46c86b-452670670_7898243190231450_1194215039024506002_n.jpg)
 
 
 ### Set up
@@ -73,11 +53,7 @@ GEMINI_KEY=
 
 #### 3. Data
 
-Prepare your data following the format below:
-
-![](https://storage.googleapis.com/mle-courses-prod/users/61b869ca9c3c5e00292bb42d/private-files/36777950-2a04-11ef-bde4-3b0f2c27b69f-Screen_Shot_2024_06_14_at_11.10.39.png)
-
-For this project, we are using MongoDB Atlas for Vector Search.
+Sample data [here](https://drive.google.com/file/d/1s1WQ2wLW7TKK0fhHH74OZu9E3XlWTfsS/view?usp=sharing)
 
 Make sure you create a Vector Search Index. [Follow this video](https://youtu.be/jZ4hN4evesg?si=ZbXAMlQ4dsBQU_oI&t=2076).
 
@@ -86,7 +62,7 @@ Make sure you create a Vector Search Index. [Follow this video](https://youtu.be
 In the serve.py file, you can see that we used the prompt like this. This prompt was enhanced by adding information about your products to it.
 
 ```
-f"Hãy trở thành chuyên gia tư vấn bán hàng cho một cửa hàng điện thoại. Câu hỏi của khách hàng: {query}\nTrả lời câu hỏi dựa vào các thông tin sản phẩm dưới đây: {source_information}."
+Become a sales consultant for a phone store. Customer's question: {query}\nAnswer the question based on the following product information: {source_information}.
 ```
 
 - query: Query from the user.
@@ -95,20 +71,18 @@ f"Hãy trở thành chuyên gia tư vấn bán hàng cho một cửa hàng đi�
 The full prompt will look like this:
 
 ```
-Hãy trở thành chuyên gia tư vấn bán hàng cho một cửa hàng điện thoại. Câu hỏi của khách hàng: Samsung Galaxy Z Fold4 512GB
-Trả lời câu hỏi dựa vào các thông tin sản phẩm dưới đây: 
- 1) Tên: điện thoại samsung galaxy z fold5 12gb/512gb - chính hãng, Giá: 30,990,000 ₫, Ưu đãi: - KM 1
-- Tặng gói Samsung care+ 6 tháng
-- KM 2
-- Trả góp tới 06 tháng không lãi suất, trả trước 0 đồng với Samsung Finance+.
-
- 2) Tên: điện thoại ai - samsung galaxy s24 - 8gb/512gb - chính hãng, Giá: 25,490,000 ₫, Ưu đãi: - KM 1
-- Trả góp tới 06 tháng không lãi suất, trả trước 0 đồng với Samsung Finance+.
-- KM 2
-- Giảm thêm 1.000.000đ cho khách hàng thân thiết (Chi tiết LH 1900 ****)
-
- 3) Tên: điện thoại samsung galaxy s23 ultra 12gb/512gb - chính hãng, Giá: 26,490,000 ₫, Ưu đãi: - KM 1
-- Trả góp tới 06 tháng không lãi suất, trả trước 0 đồng với Samsung Finance+.
+Become a sales consultant for a phone store. Customer's question: Could you provide more detailed information about the Tracfone Samsung A15 4G?
+Answer the question based on the following product information:
+ 1) Name: Tracfone Samsung A15 4G , 128 GB, LTE, 6GB RAM, Black - Prepaid Smartpone [Locked to Tracfone Wireless}, Price: $149.00, Rating: 4.0
+ 2) Name: Tracfone Samsung Galaxy A14, 5G, 64GB, Black - Prepaid Smartphone [Locked to Tracfone], Price: $99.88, Rating: 4.1
+ 3) Name: AT&T Samsung Galaxy A15 5G, 128GB, 4GB RAM, Black - Prepaid Smartphone, Price: $139.00, Rating: 2.9
+ 4) Name: AT&T Samsung Galaxy A15 5G, 128GB, 4GB RAM, Black - Prepaid Smartphone, Price: $139.00, Rating: 2.9
+ 5) Name: Tracfone Motorola moto g 5G (2024), 64GB, Gray - Prepaid Smartphone [Locked to Tracfone], Price: $99.88, Rating: 3.8
+ 6) Name: AT&T Samsung Galaxy A14 5G, 64GB Black - Prepaid Smartphone, Price: $69.88, Rating: 3.7
+ 7) Name: AT&T Samsung Galaxy A14 5G, 64GB Black - Prepaid Smartphone, Price: $69.88, Rating: 3.7
+ 8) Name: Tracfone BLU View 5, 64GB, Black - Prepaid Smartphone [Locked to Tracfone], Price: $29.88, Rating: 3.4
+ 9) Name: Tracfone BLU View 5 Pro, 64GB, Black - Prepaid Smartphone [Locked to Tracfone], Price: $69.88, Rating: 3.8
+ 10) Name: Tracfone Motorola moto g Play 4G (2024), 64GB, Black - Prepaid Smartphone [Locked to Tracfone], Price: $49.88, Rating: 3.8.
 
 ```
 
@@ -122,8 +96,5 @@ python serve.py
 
 #### 6. Testing API
 
-![](https://storage.googleapis.com/mle-courses-prod/users/61b6fa1ba83a7e37c8309756/private-files/709ea4a0-298c-11ef-8393-319a26aa84a3-Screen_Shot_2024_06_13_at_20.54.17.png)
-
 Testing on web-app. [Link](https://github.com/bangoc123/protonx-ai-app-UI)
 
-![](https://storage.googleapis.com/mle-courses-prod/users/61b869ca9c3c5e00292bb42d/private-files/0e6926b0-2a05-11ef-bde4-3b0f2c27b69f-Screen_Shot_2024_06_14_at_11.04.23.png)
