@@ -9,7 +9,7 @@ This demo will be presented at Google I/O Extended Surabaya 2024
 - [Code](https://colab.research.google.com/drive/1WU_XGl4jGcrMQq-1zhDUsTDcpsVxflXD?usp=sharing) to build Vector Search
 - [Code](https://colab.research.google.com/drive/1x4Yd7bRLbJoUePKF6pctncIvejrfkn3F?usp=sharing) to run RAG pipeline in Google Colab
 
-![](https://storage.googleapis.com/mle-courses-prod/users/61b869ca9c3c5e00292bb42d/private-files/dd582970-3da7-11ef-bf69-71eafa46c86b-Screen_Shot_2024_07_09_at_11.00.59.png)
+![](https://storage.googleapis.com/mle-courses-prod/users/61b6fa1ba83a7e37c8309756/private-files/43a13ba0-48e7-11ef-bf69-71eafa46c86b-Screen_Shot_2024_07_23_at_18.32.32.png)
 
 
 #### Chatbot Architecture
